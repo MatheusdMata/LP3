@@ -3,6 +3,7 @@ package com.projeto.senac.util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 public class Util {
 	
@@ -11,4 +12,13 @@ public class Util {
 		BigInteger hash = new BigInteger(1, messagedig.digest(senha.getBytes()));
 		return hash.toString(16);
 	}
+	public static String generateToken() {
+		// Gere um UUID aleatório
+		UUID uuid = UUID.randomUUID();
+		// Converta o UUID em uma string removendo os hifens e convertendo para letras minúsculas
+		String token = uuid.toString().replaceAll("-", "").toLowerCase();
+		return token;
+}
+
+
 }
