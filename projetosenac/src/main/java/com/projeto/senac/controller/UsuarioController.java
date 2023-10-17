@@ -63,8 +63,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/login")
-	public ModelAndView login(@Valid Usuario usuario, BindingResult br, HttpSession session)
-			throws NoSuchAlgorithmException, ServiceExc {
+	public ModelAndView login(@Valid Usuario usuario, BindingResult br, HttpSession session) throws NoSuchAlgorithmException, ServiceExc {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("usuario", new Usuario());
 
@@ -77,7 +76,9 @@ public class UsuarioController {
 			mv.setViewName("Login/login");
 		} else {
 			session.setAttribute("usuarioLogado", userLogin);
-			return index();
+			mv.addObject("usuario", userLogin);
+			mv.setViewName("login/index");
+			return mv;
 		}
 		return mv;
 
